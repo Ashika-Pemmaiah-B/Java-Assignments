@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:annotation-config />
+	<context:component-scan base-package="com.epsilon.project"></context:component-scan>
+
+	<bean name="publisher" class="com.epsilon.project.Publisher">
+		<property name="publisherId" value="101" />
+		<property name="name" value="Swan Publication" />
+		<property name="location" value="Bangalore" />
+	</bean>
+	
+	<bean name="book" class="com.epsilon.project.Book" autowire ="byName">
+		<property name="bookId" value="1" />
+		<property name="price" value="800.26" />
+	</bean>
+	
+	<bean name="customer" class="com.epsilon.project.Customer" c:id="1000" c:name="Lisa">
+	</bean>
+		
+	<bean name="order" class="com.epsilon.project.Order" p:orderId="401" autowire ="byName">
+		<property name="ordItems">
+			<list>
+				<ref bean="book1" />
+				<ref bean="book2" />
+			</list>
+		</property>
+	</bean>
+	
+	
+	<bean name="book1" class="com.epsilon.project.Book" autowire ="byName">
+		<property name="bookId" value="2" />
+		<property name="bookName" value="Malgudi Days" />
+		<property name="language" value="Kannada" />
+		<property name="price" value="600.0" />
+	</bean>
+	
+	<bean name="book2" class="com.epsilon.project.Book" autowire ="byName">
+		<property name="bookId" value="3" />
+		<property name="bookName" value="Doctors" />
+		<property name="language" value="Korean" />
+		<property name="price" value="950.11" />
+	</bean>
+	
+</beans>
